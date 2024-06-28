@@ -9,22 +9,27 @@ import About from "./Pages/About";
 import RandomMeal from "./Pages/RandomMeal";
 import MyFavorites from "./Pages/MyFavorites";
 import Categories from "./Pages/Categories";
+import {
+  ABOUT,
+  CATEGORY,
+  HOME,
+  MENU,
+  MY_FAVOURITES,
+  RANDOM_MEAL,
+} from "./Utils/route.constant";
 
 function App() {
   return (
     <div className="App">
-      {/* <header>Header</header> */}
-      {/* <SidebarMenu /> */}
-
       <BrowserRouter>
         <SidebarMenu />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/myfavorites" element={<MyFavorites />} />
-          <Route path="/random-meal" element={<RandomMeal />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/menu/category/:category" element={<Categories />} />
+          <Route path={HOME} element={<Home />} />
+          <Route path={MENU} element={<Menu />} />
+          <Route path={MY_FAVOURITES} element={<MyFavorites />} />
+          <Route path={RANDOM_MEAL} element={<RandomMeal />} />
+          <Route path={ABOUT} element={<About />} />
+          <Route path={CATEGORY} element={<Categories />} />
         </Routes>
       </BrowserRouter>
     </div>

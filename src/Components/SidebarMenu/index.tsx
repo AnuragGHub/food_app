@@ -2,6 +2,13 @@ import { useState } from "react";
 import burgerMenuIcon from "../../Assets/Images/burger-menu.svg";
 import "../SidebarMenu/SidebarMenu.css";
 import { useNavigate, useParams } from "react-router-dom";
+import {
+  ABOUT,
+  HOME,
+  MENU,
+  MY_FAVOURITES,
+  RANDOM_MEAL,
+} from "../../Utils/route.constant";
 
 const SidebarMenu = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -29,11 +36,11 @@ const SidebarMenu = () => {
       </div>
       {openMenu && (
         <ul>
-          <li onClick={() => handleNavigate("/")}>Home</li>
-          <li onClick={() => handleNavigate("/menu")}>Menu</li>
-          <li onClick={() => handleNavigate("/myfavorites")}>My Favorites</li>
-          <li onClick={() => handleNavigate("/random-meal")}>Meal Generator</li>
-          <li onClick={() => handleNavigate("/about")}>About Me</li>
+          <li onClick={() => handleNavigate(HOME)}>Home</li>
+          <li onClick={() => handleNavigate(MENU)}>Menu</li>
+          <li onClick={() => handleNavigate(MY_FAVOURITES)}>My Favorites</li>
+          <li onClick={() => handleNavigate(RANDOM_MEAL)}>Meal Generator</li>
+          <li onClick={() => handleNavigate(ABOUT)}>About Me</li>
         </ul>
       )}
     </header>
