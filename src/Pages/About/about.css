@@ -1,0 +1,27 @@
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 70%;
+  margin: auto;
+}
+
+/* for Mobile */
+@media only screen and (max-width: 600px) {
+  .about-container {
+    height: inherit;
+    width: 90%;
+    padding-top: 3rem;
+  }
+  .about-wrapper p {
+    text-align: justify;
+    font-size: 14px;
+  }
+  .about-wrapper h1 {
+    font-size: 1.5rem;
+  }
+  .about-wrapper h3 {
+    font-size: 1rem;
+  }
+}

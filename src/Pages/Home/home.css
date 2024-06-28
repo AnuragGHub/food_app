@@ -1,0 +1,20 @@
+.home-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.home-container button {
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  background: crimson;
+  color: #fff;
+  cursor: pointer;
+}
+
+.home-container button:hover {
+  opacity: 0.7;
+}
