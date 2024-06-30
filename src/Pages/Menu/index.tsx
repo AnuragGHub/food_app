@@ -3,13 +3,17 @@ import "../../global.css";
 import { useNavigate } from "react-router-dom";
 import { fetchData } from "../../Utils/helper";
 import React from "react";
+import { ERROR } from "../../Utils/route.constant";
 
-interface ICategories {
-  categories: [];
+interface ICATEGORY {
+  idCategory: string;
+  strCategory: string;
+  strCategoryDescription: string;
+  strCategoryThumb: string;
 }
 
 const Menu = () => {
-  const [categories, setCategories] = useState<any>([]);
+  const [categories, setCategories] = useState<ICATEGORY[]>([]);
   const navigate = useNavigate();
 
   const getFoodCategories = async () => {
@@ -19,6 +23,8 @@ const Menu = () => {
      * @returns data
      */
     const response = await fetchData("/categories.php");
+    //error can be handled based on error code or status code
+    if (!response) return navigate(ERROR);
     setCategories(response?.categories);
   };
 
@@ -41,21 +47,18 @@ const Menu = () => {
       <p className="title">Menu</p>
       <div className="menu-container">
         <div className="menu-wrapper">
-          {categories?.map((item: any, index: number) => {
+          {categories?.map((item: ICATEGORY, index: number) => {
             return (
               <div
                 className="menu-categories"
-                key={index}
+                key={crypto.randomUUID()}
                 onClick={() => handleCategory(item?.strCategory)}
               >
                 <img
-                  style={{ width: "200px", borderRadius: "10px" }}
                   src={item?.strCategoryThumb}
                   alt={`${item?.strCategory}+${item?.idCategory}`}
                 />
-                <p style={{ fontSize: "14px", fontWeight: "700" }}>
-                  {item?.strCategory}
-                </p>
+                <p className="strCategory">{item?.strCategory}</p>
                 <p className="description">{item?.strCategoryDescription}</p>
               </div>
             );

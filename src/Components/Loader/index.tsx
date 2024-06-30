@@ -1,0 +1,7 @@
+import "../Loader/Loader.css";
+
+const Loader = () => {
+  return <div className="loading">Loading...</div>;
+};
+
+export default Loader;

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../../global.css";
 import "../Categories/categories.css";
 import { useEffect, useState } from "react";
@@ -10,12 +10,19 @@ import {
 } from "../../Redux/store";
 import { fetchData } from "../../Utils/helper";
 import React from "react";
+import { ERROR } from "../../Utils/route.constant";
+interface ITEMS {
+  strMeal: string;
+  strMealThumb: string;
+  idMeal: string;
+}
 
 const Categories = () => {
-  const [data, setData] = useState<any>();
+  const [data, setData] = useState<ITEMS[]>([]);
   const favoriteItems = useSelector(favoritesCategories);
   const dispatch = useDispatch();
   const { category } = useParams();
+  const navigate = useNavigate();
 
   const getbyCategory = async () => {
     /**
@@ -24,6 +31,8 @@ const Categories = () => {
      * @returns data
      */
     const data = await fetchData(`/filter.php?c=${category}`);
+    //error can be handled based on error code or status code
+    if (!data) return navigate(ERROR);
     setData(data?.meals);
   };
 
@@ -36,7 +45,7 @@ const Categories = () => {
    * @param {object} item
    * @returns void
    */
-  const handleCategory = (item: any) => {
+  const handleCategory = (item: ITEMS) => {
     dispatch(addToFavorites(item));
   };
 
@@ -45,17 +54,11 @@ const Categories = () => {
       <p className="title">{category}</p>
       <div className="menu-container">
         <div className="menu-wrapper">
-          {data?.map((item: any, index: number) => {
+          {data?.map((item: ITEMS, index: number) => {
             return (
-              <div className="menu-categories" key={index}>
-                <img
-                  style={{ width: "200px", borderRadius: "10px" }}
-                  src={item?.strMealThumb}
-                  alt={`${item?.idMeal}`}
-                />
-                <p style={{ fontSize: "14px", fontWeight: "700" }}>
-                  {item?.strMeal}
-                </p>
+              <div className="menu-categories" key={crypto.randomUUID()}>
+                <img src={item?.strMealThumb} alt={`${item?.idMeal}`} />
+                <p className="strCategory">{item?.strMeal}</p>
 
                 {!favoriteItems[item?.idMeal] ? (
                   <button

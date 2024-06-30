@@ -1,7 +1,7 @@
 import { useCallback, useReducer } from "react";
 
 type ActionType =
-  | { type: "ADD"; item: any }
+  | { type: "ADD"; item: Favourite }
   | { type: "REMOVE"; idMeal: string };
 
 interface Favourite {
@@ -10,9 +10,13 @@ interface Favourite {
   strMealThumb: string;
 }
 
-export function useTodos(initialFavourites: Favourite): {
+type ITEMS = {
+  [idMeal: string]: Favourite;
+};
+
+export function useFavourites(initialFavourites: Favourite): {
   favourites: Favourite;
-  addFavourites: (item: any) => void;
+  addFavourites: (item: Favourite) => void;
   removeFavourite: (idMeal: string) => void;
 } {
   const [favourites, dispatch] = useReducer(
@@ -39,7 +43,7 @@ export function useTodos(initialFavourites: Favourite): {
     initialFavourites
   );
 
-  const addFavourites = useCallback((item: any) => {
+  const addFavourites = useCallback((item: Favourite) => {
     dispatch({
       type: "ADD",
       item,

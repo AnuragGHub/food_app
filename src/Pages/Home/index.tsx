@@ -7,16 +7,10 @@ const Home = () => {
   return (
     <div className="home-container">
       <button onClick={() => navigate("/menu")}>Menu</button>
-      <button
-        onClick={() => navigate("/myfavorites")}
-        style={{ marginLeft: "10px" }}
-      >
+      <button id="favorite-btn" onClick={() => navigate("/myfavorites")}>
         Favorites
       </button>
-      <button
-        onClick={() => navigate("/random-meal")}
-        style={{ marginLeft: "10px" }}
-      >
+      <button id="randomMeal-btn" onClick={() => navigate("/random-meal")}>
         RandomMeal
       </button>
     </div>

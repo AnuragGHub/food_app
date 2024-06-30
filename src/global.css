@@ -21,6 +21,16 @@
   box-shadow: 0px 10px 50px -17px rgba(0, 0, 0, 0.75);
 }
 
+.menu-categories img {
+  width: 200px;
+  border-radius: 10px;
+}
+
+.menu-categories .strCategory {
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .description {
   text-align: justify;
   font-size: 12px;

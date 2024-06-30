@@ -1,8 +1,18 @@
 import { PayloadAction, configureStore } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 
+interface Favourite {
+  idMeal: string;
+  strMeal: string;
+  strMealThumb: string;
+}
+
+type ITEMS = {
+  [idMeal: string]: Favourite;
+};
+
 export interface favorites {
-  data: any;
+  data: ITEMS;
 }
 
 const initialState: favorites = {
@@ -27,10 +37,10 @@ export const favoritesSlice = createSlice({
         ...newData,
       };
     },
-    removeFavourite: (state, action: PayloadAction<number>) => {
-      let favoritesFood: any = {};
+    removeFavourite: (state, action: PayloadAction<string>) => {
+      let favoritesFood: ITEMS = {};
       let filteredKeys = Object.keys(state.data).filter(
-        (item: any) => state.data[item].idMeal !== action.payload
+        (item: string) => state.data[item].idMeal !== action.payload
       );
       let data = filteredKeys.forEach(
         (key) => (favoritesFood[key] = state.data[key])

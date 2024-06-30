@@ -1,6 +1,12 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import "./App.css";
 import SidebarMenu from "./Components/SidebarMenu";
 import Home from "./Pages/Home";
@@ -17,21 +23,15 @@ import {
   MY_FAVOURITES,
   RANDOM_MEAL,
 } from "./Utils/route.constant";
+import getAppRouter from "./Configurations/getAppRouter";
+import Loader from "./Components/Loader";
 
 function App() {
+  const router = getAppRouter();
+  const children = <RouterProvider router={router} />;
   return (
     <div className="App">
-      <BrowserRouter>
-        <SidebarMenu />
-        <Routes>
-          <Route path={HOME} element={<Home />} />
-          <Route path={MENU} element={<Menu />} />
-          <Route path={MY_FAVOURITES} element={<MyFavorites />} />
-          <Route path={RANDOM_MEAL} element={<RandomMeal />} />
-          <Route path={ABOUT} element={<About />} />
-          <Route path={CATEGORY} element={<Categories />} />
-        </Routes>
-      </BrowserRouter>
+      <Suspense fallback={<Loader />}>{children}</Suspense>
     </div>
   );
 }

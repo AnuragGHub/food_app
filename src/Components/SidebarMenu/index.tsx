@@ -28,7 +28,6 @@ const SidebarMenu = () => {
     <header className={openMenu ? "sidebar-container" : "menubar"}>
       <div className="sidebar-wrapper">
         <img
-          style={{ width: "2rem", cursor: "pointer" }}
           src={burgerMenuIcon}
           alt="burgerMenuIcon"
           onClick={() => setOpenMenu(!openMenu)}

@@ -8,6 +8,10 @@
   text-align: end;
   min-width: 50px;
 }
+.sidebar-wrapper img {
+  width: 2rem;
+  cursor: pointer;
+}
 .menubar {
   position: fixed;
   padding: 1rem;
